@@ -18,9 +18,10 @@ To be able to deploy services using `docker stack deploy` and avoid installing d
 This also allows rolling updates.
 ```
 docker swarm init
-
 ```
 Deploy the application
 ```
 docker stack deploy -c docker-compose.yml smart
 ```
+
+Access smart connect at https://localhost:8443/server/connect/home
