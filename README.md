@@ -24,4 +24,13 @@ Deploy the application
 docker stack deploy -c docker-compose.yml smart
 ```
 
-Access smart connect at https://localhost:8443/server/connect/home
+Access smart connect at 
+```
+https://localhost:8443/server/connect/home
+```
+
+To check the application logs
+```
+docker service logs -f smart_tomcat
+docker service logs -f smart_postgres
+```
