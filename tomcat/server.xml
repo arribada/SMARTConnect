@@ -55,7 +55,7 @@
         name="org.wcs.smart.connect.datasource.postgresql"
         username="${postgres.user}"
         password="${postgres.pass}"
-        url="jdbc:postgresql://${postgres.hostname}:${postgres.port}/postgres" />
+        url="jdbc:postgresql://${postgres.hostname}:${postgres.port}/${postgres.user}" />
 
     <!-- email server configuration -->    
     <Resource name="mail/Session" 

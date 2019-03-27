@@ -1,12 +1,5 @@
 #!/bin/sh
 
-# for f in /run/secrets/*
-# do
-#   filename=$(basename "$f")
-#   value=$(cat ${f})
-#   sed -i "s/\${$filename}/$value/" /usr/local/tomcat/conf/*.xml
-# done
-
 # Exit when any command fails
 #set -e
 

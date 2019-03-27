@@ -11,7 +11,7 @@ services:
       - postgres-user
       - postgres-pass
     environment:
-      POSTGRES_USER_FILE: /run/secrets/postgres-user
+      POSTGRES_USER_FILE: /run/secrets/postgres-user # The username is also used for the db name.
       POSTGRES_PASSWORD_FILE: /run/secrets/postgres-pass
     volumes:
     # uncomment to persist the data to the host.
@@ -28,5 +28,5 @@ services:
       POSTGRES_HOSTNAME: postgres
       POSTGRES_PORT: 5432
     secrets:
-      - postgres-user
+      - postgres-user # The username is also used for the db name.
       - postgres-pass
