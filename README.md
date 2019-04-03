@@ -19,7 +19,8 @@ This also allows rolling updates.
 ```
 docker swarm init
 ```
-Deploy the application
+Deploy the application.
+This will take a while the first time as it needs to download all images.
 ```
 docker stack deploy -c docker-compose.yml smart
 ```
