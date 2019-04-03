@@ -20,9 +20,15 @@ This also allows rolling updates.
 docker swarm init
 ```
 Deploy the application.
-This will take a while the first time as it needs to download all images.
+> This will take a while the first time as it needs to download all images.
 ```
 docker stack deploy -c docker-compose.yml smart
+```
+
+Check the status.
+> Once the `Replicas` column shows `1/1` the application has been deployed.
+```
+docker stack services smart
 ```
 
 Access smart connect at 
