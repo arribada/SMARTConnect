@@ -22,8 +22,8 @@ services:
     ports:
     - "8443:8443"
     # uncomment to persist data to the host.
-    #volumes:
-    #- ./tomcat/filestore:/home/smartConnect/filestore
+    volumes:
+    - ./tomcat/filestore:/home/SMARTconnect/filestore/
     environment:
       POSTGRES_HOSTNAME: postgres
       POSTGRES_PORT: 5432
