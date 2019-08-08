@@ -6,7 +6,7 @@ secrets:
     file: .local/postgres_user
 services:
   postgres:
-    image: mdillon/postgis:9.6
+    image: arribada/postgis
     secrets:
       - postgres-user
       - postgres-pass

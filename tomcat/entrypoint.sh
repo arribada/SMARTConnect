@@ -26,7 +26,7 @@ file_env 'POSTGRES_USER' '/run/secrets/postgres-user'
 file_env 'POSTGRES_PASS' '/run/secrets/postgres-pass'
 
 echo "Testing db connection to host:$POSTGRES_HOSTNAME:$POSTGRES_PORT."
-MAX_RETRY=90
+MAX_RETRY=480
 count=0
 while :
 do
@@ -38,7 +38,7 @@ do
     fi
     if [ $count -eq $MAX_RETRY ]; then
         >&2 echo "No connection after $MAX_RETRY seconds"
-        exit -1
+        exit 1
     fi
     echo "Retrying..."
     sleep 1
