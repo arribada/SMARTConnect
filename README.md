@@ -22,8 +22,13 @@ This also allows rolling updates.
 docker swarm init
 ```
 Deploy the application.
-> This will take a while the first time as it needs to download all images.
+> This will take a while the first time as it needs to download all docker images.
 ```
+git clone  https://github.com/arribada/SMARTConnect.git
+cd SMARTConnect
+mkdir .local
+echo "postgres" > .local/postgres_user 
+echo "postgres" > .local/postgres_pass
 docker stack deploy -c docker-compose.yml smart
 ```
 
@@ -42,4 +47,15 @@ To check the application logs
 ```
 docker service logs -f smart_tomcat
 docker service logs -f smart_postgres
+```
+
+## Notes
+
+The postgis image is created from https://github.com/appropriate/docker-postgis
+
+With the following modifications to make it multi arch.
+```
+FROM --platform=$BUILDPLATFORM postgres:9.6
+ENV POSTGIS_MAJOR 2.5
+ENV POSTGIS_VERSION 2.5.2+dfsg-1~exp1.pgdg90+1
 ```

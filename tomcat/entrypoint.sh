@@ -3,7 +3,7 @@
 # Exit when any command fails
 #set -e
 
-mkdir -p /home/smartConnect/filestore/dataqueue/
+mkdir -p /home/SMARTconnect/filestore/dataqueue/
 if [ $? -ne 0 ]; then
     >&2 echo "Couldn't create dataque folder"
     exit -1

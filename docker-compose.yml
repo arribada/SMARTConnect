@@ -14,19 +14,20 @@ services:
       POSTGRES_USER_FILE: /run/secrets/postgres-user # The username is also used for the db name.
       POSTGRES_PASSWORD_FILE: /run/secrets/postgres-pass
     volumes:
-    # uncomment to persist the data to the host.
-    #- ./postgres/data:/var/lib/postgresql/data
+    - postgres:/var/lib/postgresql/data
     - ./postgres/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
   tomcat:
     image: arribada/smart-connect
     ports:
     - "8443:8443"
-    # uncomment to persist data to the host.
     volumes:
-    - ./tomcat/filestore:/home/SMARTconnect/filestore/
+    - tomcat:/home/SMARTconnect/filestore/
     environment:
       POSTGRES_HOSTNAME: postgres
       POSTGRES_PORT: 5432
     secrets:
       - postgres-user # The username is also used for the db name.
       - postgres-pass
+volumes:
+  tomcat:
+  postgres:
