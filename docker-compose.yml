@@ -6,7 +6,7 @@ secrets:
     file: .local/postgres_user
 services:
   postgres:
-    image: arribada/smart-connect-postgis
+    image: arribada/smart-connect-postgis:v0.0.1
     secrets:
       - postgres-user
       - postgres-pass
@@ -17,7 +17,7 @@ services:
     - postgres:/var/lib/postgresql/data
     - ./postgres/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
   tomcat:
-    image: arribada/smart-connect
+    image: arribada/smart-connect:v0.0.1
     ports:
     - "8443:8443"
     volumes:

@@ -9,13 +9,6 @@
 Install docker:
 https://docs.docker.com/install/
 
-
-Create postgres user and pass files in 
-```
-.local/postgres_user
-.local/postgres_pass
-```
-
 To be able to deploy services using `docker stack deploy` and avoid installing docker compose need to enable swarm mode. 
 This also allows rolling updates.
 ```
@@ -47,15 +40,4 @@ To check the application logs
 ```
 docker service logs -f smart_tomcat
 docker service logs -f smart_postgres
-```
-
-## Notes
-
-The postgis image is created from https://github.com/appropriate/docker-postgis
-
-With the following modifications to make it multi arch.
-```
-FROM --platform=$BUILDPLATFORM postgres:9.6
-ENV POSTGIS_MAJOR 2.5
-ENV POSTGIS_VERSION 2.5.2+dfsg-1~exp1.pgdg90+1
 ```

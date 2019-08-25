@@ -23,7 +23,6 @@ fi
 
 if [ -n "$POSTGRES_PASSWORD_FILE" ] ; then
     echo "POSTGRES_PASSWORD_FILE env provided so using it is a secret"
-
     file_env 'POSTGRES_PASSWORD_FILE' '/run/secrets/postgres-pass'
 fi
 
