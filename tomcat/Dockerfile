@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM tomcat:8.5-jre8
+FROM --platform=$TARGETPLATFORM tomcat:8.5-jre8
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends netcat &&\
