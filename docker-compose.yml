@@ -6,7 +6,7 @@ secrets:
     file: .local/postgres_user
 services:
   postgres:
-    image: arribada/postgis
+    image: arribada/smart-connect-postgis
     secrets:
       - postgres-user
       - postgres-pass
