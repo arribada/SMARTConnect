@@ -41,3 +41,6 @@ To check the application logs
 docker service logs -f smart_tomcat
 docker service logs -f smart_postgres
 ```
+
+NOTES:
+to trigger a new image build an push with circle, just create a new tag or delete and recreate an existing tag.
