@@ -27,7 +27,7 @@ jobs:
             [ -z "$CIRCLE_TAG" ] && echo "No release tag pushing to latest" || export CIRCLE_TAG=":$CIRCLE_TAG"
           
             cd tomcat
-            wget https://github.com/arribada/SMARTConnect/releases/download/v0.0.1/server.war
+            wget https://github.com/arribada/SMARTConnect/releases/download/tomcat-app-v0.0.1/server.war
             docker buildx build --progress=plain --platform linux/amd64,linux/arm/v7 -t $DOCKERHUB_REPO/smart-connect$CIRCLE_TAG --push .
 
             cd ../postgres
