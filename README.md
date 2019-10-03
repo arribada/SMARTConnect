@@ -2,6 +2,7 @@
  - auto generate ssl .keystore file.
  - don't expose db username and pass in the tomcat logs
  - server.war is too big to be kept in github so maybe build it from source. github has a limit of 100mb for a single file, but if build from source it will be broken into many small files.
+ - auto circle build doesn't work because of the missing server.war.
 
 
 # How to use
