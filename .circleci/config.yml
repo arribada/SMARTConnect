@@ -1,44 +1,29 @@
 version: 2.1
-jobs:
-  docker_publish:
-    machine:
-      image: ubuntu-1604:201903-01
-    steps:
-      - checkout  
-      - run:
-          command: |
-            sudo apt update 
-            sudo apt install -y qemu qemu-user-static qemu-user binfmt-support
-            git clone https://github.com/computermouth/qemu-static-conf.git
-            sudo mkdir -p /lib/binfmt.d
-            sudo cp qemu-static-conf/*.conf /lib/binfmt.d/
-            sudo systemctl restart systemd-binfmt.service
-            sudo apt purge -y docker-ce docker-ce-cli
-            sudo curl -fsSL https://get.docker.com -o get-docker.sh
-            sudo sh get-docker.sh
-            sudo usermod -aG docker $(whoami)
-            mkdir $HOME/.docker
-            sh -c 'echo "{ \"experimental\": \"enabled\" }" >> $HOME/.docker/config.json'
-            docker buildx create --name=qemu
-            docker buildx inspect --bootstrap qemu
-            docker buildx use qemu
-            docker login --username=$DOCKERHUB_USER --password=$DOCKERHUB_PASS
 
-            [ -z "$CIRCLE_TAG" ] && echo "No release tag pushing to latest" || export CIRCLE_TAG=":$CIRCLE_TAG"
-          
-            cd tomcat
-            wget https://github.com/arribada/SMARTConnect/releases/download/tomcat-app-v0.0.1/server.war
-            docker buildx build --progress=plain --platform linux/amd64,linux/arm/v7 -t $DOCKERHUB_REPO/smart-connect$CIRCLE_TAG --push .
-
-            cd ../postgres
-            docker buildx build --progress=plain --platform linux/amd64,linux/arm/v7 -t $DOCKERHUB_REPO/smart-connect-postgis$CIRCLE_TAG --push .
+orbs:
+  docker: arribada/docker@0.0.12
 workflows:
-  version: 2
   publish:
     jobs:
-      - docker_publish:
+      - docker/publish:
+          containerName: smart-connect
+          buildContext: ./tomcat
+          context: org-context
           filters:
             branches:
-              ignore: /.*/
-            tags:
-              only: /v\d+\.\d+\.\d+$/
+                only:
+                  - master
+            #   ignore: /.*/
+            # tags:
+            #   only: /v\d+\.\d+\.\d+$/
+      - docker/publish:
+          containerName: smart-connect-postgis
+          buildContext: ./postgres
+          context: org-context
+          filters:
+            branches:
+                only: 
+                  - master
+            #   ignore: /.*/
+            # tags:
+            #   only: /v\d+\.\d+\.\d+$/
