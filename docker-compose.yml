@@ -26,8 +26,11 @@ services:
       POSTGRES_HOSTNAME: postgres
       POSTGRES_PORT: 5432
     secrets:
-      - postgres-user # The username is also used for the db name.
+      - postgres-user
       - postgres-pass
+    environment:
+      POSTGRES_USER_FILE: /run/secrets/postgres-user
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres-pass
 volumes:
   tomcat:
   postgres:

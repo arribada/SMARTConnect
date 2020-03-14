@@ -18,12 +18,12 @@ file_env() {
 #  Docker secrets take precedence.
 if [ -n "$POSTGRES_USER_FILE" ] ; then
     echo "POSTGRES_USER_FILE env provided so using it is a secret"
-    file_env 'POSTGRES_USER_FILE' '/run/secrets/postgres-user'
+    file_env 'POSTGRES_USER' '/run/secrets/postgres-user'
 fi
 
 if [ -n "$POSTGRES_PASSWORD_FILE" ] ; then
     echo "POSTGRES_PASSWORD_FILE env provided so using it is a secret"
-    file_env 'POSTGRES_PASSWORD_FILE' '/run/secrets/postgres-pass'
+    file_env 'POSTGRES_PASSWORD' '/run/secrets/postgres-pass'
 fi
 
 if [ -z "$POSTGRES_USER" ]  || [ -z "$POSTGRES_PASSWORD" ] ; then
