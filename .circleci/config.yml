@@ -1,13 +1,15 @@
 version: 2.1
 
 orbs:
-  docker: arribada/docker@0.0.12
+  docker: arribada/docker@0.0.15
 workflows:
   publish:
     jobs:
       - docker/publish:
           containerName: smart-connect
           buildContext: tomcat
+          afterCheckout:
+            - run: cd tomcat && wget https://github.com/arribada/SMARTConnect/releases/download/tomcat-app-v0.0.1/server.war
           context: org-context
           filters:
             branches:
