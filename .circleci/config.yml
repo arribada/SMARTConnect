@@ -12,20 +12,20 @@ workflows:
             - run: cd tomcat && wget https://github.com/arribada/SMARTConnect/releases/download/tomcat-app-v0.0.1/server.war
           context: org-context
           filters:
-            branches:
-                only:
-                  - master
+            # branches:
+            #     only:
+            #       - master
             #   ignore: /.*/
-            # tags:
-            #   only: /v\d+\.\d+\.\d+$/
+            tags:
+              only: /v\d+\.\d+\.\d+$/
       - docker/publish:
           containerName: smart-connect-postgis
           buildContext: postgres
           context: org-context
           filters:
-            branches:
-                only: 
-                  - master
-            #   ignore: /.*/
-            # tags:
-            #   only: /v\d+\.\d+\.\d+$/
+            # branches:
+            #     only: 
+            #       - master
+            # #   ignore: /.*/
+            tags:
+              only: /v\d+\.\d+\.\d+$/
