@@ -10,8 +10,15 @@
 Install docker:
 https://docs.docker.com/install/
 
+## Run using docker swarm
+### Note
+The docker swarm networking is broken for the Rpi 4 and
+docker-compose also doesn't install properly there so
+need to run the containers using docker run with the instructions below.
+
 To be able to deploy services using `docker stack deploy` and avoid installing docker compose need to enable swarm mode. 
 This also allows rolling updates.
+
 ```
 docker swarm init
 ```
@@ -30,6 +37,36 @@ Check the status.
 > Once the `Replicas` column shows `1/1` the application has been deployed.
 ```
 docker stack services smart
+```
+
+## Run using docker run
+```
+docker network create smart
+docker run -d \
+    --name=tomcat \
+    --net=smart \
+    -e POSTGRES_USER=postgres \
+    -e POSTGRES_PASSWORD=postgres \
+    -e POSTGRES_PORT=5432 \
+    -e POSTGRES_HOSTNAME=postgres \
+    -v tomcat:/home/SMARTconnect/filestore/ \
+    -p 8443:8443 \
+    arribada/smart-connect:v0.0.1
+
+docker run -d \
+    --net=smart \
+    --name=postgres \
+    -e POSTGRES_USER=postgres \
+    -e POSTGRES_PASSWORD=postgres \
+    -v postgres:/var/lib/postgresql/data \
+    -v $(pwd)/postgres/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql \
+    arribada/smart-connect-postgis:v0.0.1
+```
+
+Check the logs
+```
+docker logs -f tomcat
+docker logs -f postgres
 ```
 
 Access smart connect at 
