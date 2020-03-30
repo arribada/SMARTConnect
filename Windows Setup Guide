@@ -1,0 +1,49 @@
+<-- Setting up the Server -->
+
+Install Docker Desktop (https://hub.docker.com/editions/community/docker-ce-desktop-windows)
+
+After Docker Desktop is installed, start docker desktop and open the dashboard
+
+Copy and Paste the following commands into the command prompt.
+Wait for each command to complete before starting the next.
+
+docker network create smart
+
+docker run -d --restart=always --net=smart --name=postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -v postgres:/var/lib/postgresql/data -v /var/lib/postgres/initdbsql:/docker-entrypoint-initdb.d/initdbsql arribada/smart-connect-postgis:v0.0.1
+
+docker run -d --restart=always --name=tomcat --net=smart -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_PORT=5432 -e POSTGRES_HOSTNAME=postgres -v tomcat:/home/SMARTconnect/filestore/ -p 8443:8443 arribada/smart-connect:v0.0.1
+
+These commands will download and replicate the Postgres Database and Tomcat Server needed for Smart Connect.
+
+After all command have been run check the docker dashboard and verify that tomcat and postgres are running.
+
+After waiting a minute or so for the database to generate and you should now be able to access the connect server on the local network at https://localhost:8443/server/connect/home or https://<hosting.computers.local.IP>:8443/server/connect/home
+
+The default user:pass for the Connect Server is smart:smart
+It is probably a good idea to log in a make a new admin user and remove the default. 
+
+In order to make this server accessible from the internet you must next set up port forwarding on your router to forward traffic incoming on port 8443 to the hosting machine on port 8443.
+
+
+
+<-- Configuring SMART Desktop to access the Server -->
+
+Additional steps must now be taken in order for a SMART desktop installation to be able to access the server.
+
+The certificate to be used when configuring SMART Desktop to access the server is found at (https://github.com/arribada/SMARTConnect/blob/master/tomcat/ssl.cert)
+
+Additionally, in order to use this certificate you must add an alias to your host file so that the IP address of the hosting machine is usable with the certificate.
+
+First go to https://www.whatismyip.com/ on the machine hosting the CONNECT server to find the IP address of that machine.
+
+Open a Notepad as Administrator and open the file located at C:\Windows\System32\drivers\etc\hosts
+
+Append the following two lines to the file
+
+#SMARTCONNECT
+<IP.Of.Hosting.Machine> smartconnect
+
+Save and Exit
+
+At this point you should be able to use the provided certificate file and the smart:smart or customized user credentials to configure a SMART Desktop instance to access the server running locally using the server address: https://smartconnect:8443/server
+
