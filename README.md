@@ -58,7 +58,6 @@ docker run -d \
     -e POSTGRES_USER=postgres \
     -e POSTGRES_PASSWORD=postgres \
     -v postgres:/var/lib/postgresql/data \
-    -v $(pwd)/postgres/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql \
     arribada/smart-connect-postgis:v0.0.1
 ```
 
