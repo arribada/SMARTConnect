@@ -101,5 +101,3 @@ Append the following two lines to the file
 ```
 
 At this point, you will be able to connect SMART desktop to `https://smartconnect:8443/server` with the provided certificate file and the default smart:smart login credentials. 
-
-Note: If the IP address of the machine hosting SMART Connect is not static then the alias in the hosts file will need to be updated as the IP of the hosting machine changes.
