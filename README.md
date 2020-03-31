@@ -88,7 +88,7 @@ Additional steps must now be taken in order for a SMART Desktop installation to 
 
 The certificate to be used when configuring SMART Desktop to access the server is found at [tomcat/ssl.cert](tomcat/ssl.cert)
 
-Additionally, in order to use this certificate you must add an alias to your host file so that the IP address of the hosting machine is usable with the certificate.
+The certificate is issued to the name `smartconnect` so need to link the SMART connect server IP to that name.
 
 
 Edit the system host file to link the certificate hostname to the correct IP
