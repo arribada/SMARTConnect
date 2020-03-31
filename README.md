@@ -90,7 +90,6 @@ The certificate to be used when configuring SMART Desktop to access the server i
 
 Additionally, in order to use this certificate you must add an alias to your host file so that the IP address of the hosting machine is usable with the certificate.
 
-First go to https://www.whatismyip.com/ on the machine hosting the Connect Server to find the IP address of that machine.
 
 Open a Notepad as Administrator and open the file located at C:\Windows\System32\drivers\etc\hosts
 Append the following two lines to the file
