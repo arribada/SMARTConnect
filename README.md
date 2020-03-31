@@ -80,3 +80,26 @@ docker service logs -f smart_postgres
 
 NOTES:
 to trigger a new image build an push with circle, just create a new tag or delete and recreate an existing tag.
+
+
+## Configuring SMART Desktop to access the Server
+
+Additional steps must now be taken in order for a SMART Desktop installation to be able to access the server.
+
+The certificate to be used when configuring SMART Desktop to access the server is found at [tomcat/ssl.cert](tomcat/ssl.cert)
+
+The certificate is issued to the name `smartconnect` so need to link the SMART connect server IP to that name.
+
+
+Edit the system host file to link the certificate hostname to the correct IP
+
+`C:\Windows\System32\drivers\etc\hosts`
+
+Append the following two lines to the file
+
+```
+#SMARTCONNECT
+<IP.Of.Hosting.Machine> smartconnect
+```
+
+At this point, you will be able to connect SMART desktop to `https://smartconnect:8443/server` with the provided certificate file and the default smart:smart login credentials. 
