@@ -92,7 +92,7 @@ The certificate is issued to the name `smartconnect` so need to link the SMART c
 
 
 Edit the system host file to link the certificate hostname to the correct IP
-C:\Windows\System32\drivers\etc\hosts
+`C:\Windows\System32\drivers\etc\hosts`
 Append the following two lines to the file
 
 ```
