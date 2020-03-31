@@ -86,7 +86,7 @@ to trigger a new image build an push with circle, just create a new tag or delet
 
 Additional steps must now be taken in order for a SMART Desktop installation to be able to access the server.
 
-The certificate to be used when configuring SMART Desktop to access the server is found at https://github.com/arribada/SMARTConnect/blob/master/tomcat/ssl.cert
+The certificate to be used when configuring SMART Desktop to access the server is found at [tomcat/ssl.cert](tomcat/ssl.cert)
 
 Additionally, in order to use this certificate you must add an alias to your host file so that the IP address of the hosting machine is usable with the certificate.
 
