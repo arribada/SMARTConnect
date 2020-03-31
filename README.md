@@ -80,3 +80,26 @@ docker service logs -f smart_postgres
 
 NOTES:
 to trigger a new image build an push with circle, just create a new tag or delete and recreate an existing tag.
+
+
+## Configuring SMART Desktop to access the Server
+
+Additional steps must now be taken in order for a SMART Desktop installation to be able to access the server.
+
+The certificate to be used when configuring SMART Desktop to access the server is found at https://github.com/arribada/SMARTConnect/blob/master/tomcat/ssl.cert
+
+Additionally, in order to use this certificate you must add an alias to your host file so that the IP address of the hosting machine is usable with the certificate.
+
+First go to https://www.whatismyip.com/ on the machine hosting the Connect Server to find the IP address of that machine.
+
+Open a Notepad as Administrator and open the file located at C:\Windows\System32\drivers\etc\hosts
+Append the following two lines to the file
+
+```
+#SMARTCONNECT
+<IP.Of.Hosting.Machine> smartconnect
+```
+
+At this point you should be able to use the provided certificate file and the smart:smart or customized admin credentials  in Connect to configure a SMART Desktop instance to access the server running locally using the server address: https://smartconnect:8443/server
+
+Note: If the IP address of the machine hosting SMART Connect is not static then the alias in the hosts file will need to be updated as the IP of the hosting machine changes.
