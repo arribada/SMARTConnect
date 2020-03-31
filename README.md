@@ -91,7 +91,8 @@ The certificate to be used when configuring SMART Desktop to access the server i
 Additionally, in order to use this certificate you must add an alias to your host file so that the IP address of the hosting machine is usable with the certificate.
 
 
-Open a Notepad as Administrator and open the file located at C:\Windows\System32\drivers\etc\hosts
+Edit the system host file to link the certificate hostname to the correct IP
+C:\Windows\System32\drivers\etc\hosts
 Append the following two lines to the file
 
 ```
